@@ -1,26 +1,27 @@
-﻿string name;
-int age;
-int limit = 30;
-int limit1 = 18;
-char sex;
+﻿using System.Globalization;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
-name = "Ewa";
-age = 18;
-sex = 'F';
+int number = int.MaxValue;
+//
+char[] digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+string numberAsString = number.ToString();
+char[] letters = numberAsString.ToArray();
+//
+int[] result = new int[digits.Length];
 
-if (sex == 'F' && age < limit)
+for (int j = 0; j < letters.Length; j++)
 {
-    Console.WriteLine("\"" + "Kobieta poniżej " + limit + " lat" + "\"");
+    for (int i = 0; i < digits.Length; i++)
+    {
+        if (letters[j] == digits[i])
+        {
+            result[i]++;
+        }
+        
+    }
 }
-else if (name == "Ewa" && sex == 'F')
-{ 
-    Console.WriteLine("\"" + name + ", lat " + age + "\"");
-}
-else if (sex == 'M' && age < limit1)
+Console.WriteLine("number = " + number);
+for (int i = 0; i < digits.Length; i++)
 {
-    Console.WriteLine("\"" + "Niepełnoletni mężczyzna" + "\"");
-}
-else if (age >= limit1)
-{
-    Console.WriteLine("\"" + "Osoba jest pełnoletnia" + "\"");
+    Console.WriteLine("digit " + "\"" + digits[i] + "\"" + " -> " + result[i]);
 }
