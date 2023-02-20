@@ -1,27 +1,50 @@
-﻿using System.Globalization;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using ChallengeApp;
 
-int number = int.MaxValue;
-//
-char[] digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-string numberAsString = number.ToString();
-char[] letters = numberAsString.ToArray();
-//
-int[] result = new int[digits.Length];
-
-for (int j = 0; j < letters.Length; j++)
+List<Employee> employees = new List<Employee>()
 {
-    for (int i = 0; i < digits.Length; i++)
+    new Employee("Irena", "Janik"),
+    new Employee("Jan", "Kranik"),
+    new Employee("Karol", "Lanik")
+};
+
+//
+int evalNumber = 5;
+var randEval = new Random();
+//
+for (int i = 0; i < evalNumber; i++)
+{
+    foreach (Employee e in employees)
     {
-        if (letters[j] == digits[i])
-        {
-            result[i]++;
-        }
-        
+        e.AddEvaluation(randEval.Next(1, 11));
     }
 }
-Console.WriteLine("number = " + number);
-for (int i = 0; i < digits.Length; i++)
+
+string[] empName = new string[employees.Count];
+int[] empResult = new int[employees.Count];
+int count = 0;
+
+foreach (Employee e in employees)
 {
-    Console.WriteLine("digit " + "\"" + digits[i] + "\"" + " -> " + result[i]);
+    empName[count] = e.FirstName + " " + e.LastName + "; ";
+    empResult[count] = e.Result;
+    count++;
+    Console.WriteLine(e.FirstName + " " + e.LastName + "; " + "eval = " + e.Result);
 }
+
+int maxIndex = 0;
+int max = empResult[maxIndex];
+
+for (int i = 1; i < employees.Count; i++)
+{
+    if (max <= empResult[i])
+    {
+        max = empResult[i];
+        maxIndex = i;
+    }
+    else
+        continue;
+}
+
+Console.WriteLine("\nThe highest evaluated employee: \n" + empName[maxIndex] + "eval = " + empResult[maxIndex]);
+
+
