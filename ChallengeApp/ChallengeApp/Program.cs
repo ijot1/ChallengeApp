@@ -19,17 +19,23 @@ for (int i = 0; i < evalNumber; i++)
     }
 }
 
-int maxResult = 0;
+foreach (Employee e in employees)
+{
+    Console.WriteLine(e.FirstName + " " + e.LastName + "; " + e.Result); ;
+}
+
+int maxResult = -1;
 Employee empHighestEval = null;
 
 foreach (Employee e in employees)
 {
     if (e.Result > maxResult)
     {
+        maxResult = e.Result;
         empHighestEval = e;
     }
 }
 
-Console.WriteLine("\nThe highest evaluated employee: \n" + empHighestEval.FirstName + empHighestEval.LastName + "eval = " + empHighestEval.Result);
+Console.WriteLine("\nThe highest evaluated employee: \n" + empHighestEval.FirstName + " " + empHighestEval.LastName + "; " + "eval = " + empHighestEval.Result);
 
 
