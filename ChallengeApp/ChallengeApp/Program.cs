@@ -36,6 +36,17 @@ foreach (Employee e in employees)
     }
 }
 
-Console.WriteLine("\nThe highest evaluated employee: \n" + empHighestEval.FirstName + " " + empHighestEval.LastName + "; " + "eval = " + empHighestEval.Result);
+foreach (Employee e in employees)
+{
+    if (e.Result == maxResult)
+    {
+        Console.WriteLine(
+            "\nThe highest evaluated employee: \n" 
+            + e.FirstName + " " 
+            + e.LastName + "; " 
+            + "eval = " + maxResult);
+
+    }
+}
 
 
