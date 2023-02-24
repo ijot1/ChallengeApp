@@ -32,7 +32,6 @@ foreach (Employee e in employees)
     if (e.Result > maxResult)
     {
         maxResult = e.Result;
-        empHighestEval = e;
     }
 }
 
@@ -41,12 +40,10 @@ foreach (Employee e in employees)
     if (e.Result == maxResult)
     {
         Console.WriteLine(
-            "\nThe highest evaluated employee: \n" 
-            + e.FirstName + " " 
-            + e.LastName + "; " 
+            "\nThe highest evaluated employee: \n"
+            + e.FirstName + " "
+            + e.LastName + "; "
             + "eval = " + maxResult);
 
     }
 }
-
-
