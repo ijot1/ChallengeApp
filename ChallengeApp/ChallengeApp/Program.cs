@@ -1,49 +1,21 @@
 ﻿using ChallengeApp;
 
-List<Employee> employees = new List<Employee>()
-{
-    new Employee("Irena", "Janik"),
-    new Employee("Jan", "Kranik"),
-    new Employee("Karol", "Lanik")
-};
+var employee = new Employee("Ala", "Makota");
+var rand = new Random();
+int gradesNumber = 5;
+int count = 0;
+float grade;
 
-//
-int evalNumber = 5;
-var randEval = new Random();
-//
-for (int i = 0; i < evalNumber; i++)
+for(int i = 0; i < gradesNumber; i++)
 {
-    foreach (Employee e in employees)
-    {
-        e.AddEvaluation(randEval.Next(1, 11));
-    }
+    grade = (float)(10 * rand.NextDouble());
+    employee.AddGrade(grade);
+    count++;
+    Console.WriteLine($"grade [{count}] = {grade, 5:F2}");
 }
 
-foreach (Employee e in employees)
-{
-    Console.WriteLine(e.FirstName + " " + e.LastName + "; " + e.Result); ;
-}
-
-int maxResult = -1;
-Employee empHighestEval = null;
-
-foreach (Employee e in employees)
-{
-    if (e.Result > maxResult)
-    {
-        maxResult = e.Result;
-    }
-}
-
-foreach (Employee e in employees)
-{
-    if (e.Result == maxResult)
-    {
-        Console.WriteLine(
-            "\nThe highest evaluated employee: \n"
-            + e.FirstName + " "
-            + e.LastName + "; "
-            + "eval = " + maxResult);
-
-    }
-}
+var statistics = employee.GetStatistics();
+Console.WriteLine($"Average: {statistics.Average, 5:F2}");
+Console.WriteLine($"Min: {statistics.Min, 9:F2}");
+Console.WriteLine($"Max: {statistics.Max, 9:F2}");
+Console.WriteLine (System.IO.Path.DirectorySeparatorChar);
