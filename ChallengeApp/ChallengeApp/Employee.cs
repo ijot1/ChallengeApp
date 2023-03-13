@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
@@ -75,6 +76,59 @@ namespace ChallengeApp
 
             statistics.Average = Result / grades.Count;
 
+            return statistics;
+        }
+
+        public Statistics GetStatisticsWithFor()
+        {
+            var statistics = new Statistics(); ;
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+
+            for (var i = 0; i < grades.Count; i++)
+            {   
+                statistics.Max = Math.Max(statistics.Max, grades[i]);
+                statistics.Min = Math.Min(statistics.Min, grades[i]); 
+            }
+
+            statistics.Average = Result / grades.Count;
+
+            return statistics;
+        }
+
+        public Statistics GetStatisticsWithDoWhile()
+        {
+            var statistics = new Statistics();
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+            var i = 0;            
+            do
+            {
+                statistics.Max = Math.Max(statistics.Max, grades[i]);
+                statistics.Min = Math.Min(statistics.Min, grades[i]);
+                i++;
+            }
+            while (i < grades.Count);
+
+            statistics.Average = Result / grades.Count;
+
+            return statistics;
+        }
+
+        public Statistics GetStatisticsWithWhile()
+        {
+            var statistics = new Statistics();
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+            var i = 0;
+            while (i < grades.Count)
+            {
+                statistics.Max = Math.Max(statistics.Max, grades[i]);
+                statistics.Min = Math.Min(statistics.Min, grades[i]);
+                i++;
+            }
+
+            statistics.Average = Result / grades.Count;
 
             return statistics;
         }
