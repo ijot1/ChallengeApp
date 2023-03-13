@@ -31,13 +31,39 @@ namespace ChallengeApp
 
         public void AddGrade(float grade)
         {
-            this.grades.Add(grade);
+            if(grade >= 0 && grade <= 100)
+            {
+                this.grades.Add(grade);
+            }
+            else
+            {
+                Console.WriteLine($"grade value out of scope: {grade :F2}");
+            }
+        }
+
+        public void AddGrade(string grade)
+        {
+            if (float.TryParse(grade, out float result))
+            {
+                this.AddGrade(result);
+            }
+            else
+            {
+                Console.WriteLine($"entered data is not of float type: {grade}");
+            }  
+        }
+
+        public void AddGrade(char grade)
+        {
+            {
+                var value = (float)grade;
+                this.AddGrade(value);
+            }
         }
 
         public Statistics GetStatistics()
         {
-            var statistics = new Statistics();
-            statistics.Average = 0;
+            var statistics = new Statistics();;
             statistics.Max = float.MinValue;
             statistics.Min = float.MaxValue;
 
@@ -45,11 +71,10 @@ namespace ChallengeApp
             {
                 statistics.Max = Math.Max(statistics.Max, grade);
                 statistics.Min = Math.Min(statistics.Min, grade);
-                statistics.Average += grade;
             }
 
-            statistics.Average /= this.grades.Count;
-            
+            statistics.Average = Result / grades.Count;
+
 
             return statistics;
         }
