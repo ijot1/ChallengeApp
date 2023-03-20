@@ -10,6 +10,14 @@ namespace ChallengeApp
 {
     public class Employee
     {
+        public static float lowestGrade = 0;
+        public static float highestGrade = 100;
+        public static float levelA = 80;
+        public static float levelB = 60;
+        public static float levelC = 40;
+        public static float levelD = 20;
+        public static float levelE = 0;
+        
         private List<float> grades = new List<float>();
 
         public Employee(string name, string surname) 
@@ -37,7 +45,7 @@ namespace ChallengeApp
 
         public void AddGrade(float grade)
         {
-            if(grade >= 0 && grade <= 100)
+            if(grade >= lowestGrade && grade <= highestGrade)
             {
                 this.grades.Add(grade);
             }
@@ -49,15 +57,53 @@ namespace ChallengeApp
 
         public void AddGrade(string grade)
         {
-            if (float.TryParse(grade, out float result))
+            var inValue = grade.ToCharArray();
+            if(inValue.Length == 1)
             {
-                this.AddGrade(result);
+                var inV = inValue[0];
+                switch (inV)
+                {
+                    case var i when (inV is '0'):
+                        this.grades.Add(lowestGrade);
+                        break;
+
+                    case var i when ((inV is 'a') || (inV is 'A')):
+                        this.grades.Add(levelA);
+                        break;
+
+                    case var i when ((inV is 'b') || (inV is 'B')):
+                        this.grades.Add(levelB);
+                        break;
+
+                    case var i when ((inV is 'c') || (inV is 'C')):
+                        this.grades.Add(levelC);
+                        break;
+
+                    case var i when ((inV is 'd') || (inV is 'D')):
+                        this.grades.Add(levelD);
+                        break;
+
+                    case var i when ((inV is 'e') || (inV is 'E')):
+                        this.grades.Add(levelE);
+                        break;
+                    default: 
+                        Console.WriteLine($"letter out of scope: {grade}");
+                        break;
+                    }
             }
             else
             {
-                Console.WriteLine($"entered data is not of float type: {grade}");
-            }  
+                if (float.TryParse(grade, out float result))
+                {
+                    this.AddGrade(result);
+                }
+                else
+                {
+                    Console.WriteLine($"entered data is not of float type: {grade}");
+                }
+            }
         }
+            
 
         public Statistics GetStatistics()
         {
@@ -78,16 +124,16 @@ namespace ChallengeApp
 
             switch(statistics.Average)
             {
-                case var average when average >= 80:
+                case var average when average >= levelA:
                     statistics.AverageLetter = 'A';
                     break;
-                case var average when average >= 60:
+                case var average when average >= levelB:
                     statistics.AverageLetter = 'B';
                     break;
-                case var average when average >= 40:
+                case var average when average >= levelC:
                     statistics.AverageLetter = 'C';
                     break;
-                case var average when average >= 20:
+                case var average when average >= levelD:
                     statistics.AverageLetter = 'D';
                     break;
                 default:

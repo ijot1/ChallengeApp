@@ -20,6 +20,98 @@ namespace ChallengeApp.Tests
         }
 
         [Test]
+        public void CheckAddGradeAsLetterZero_ShouldReturnLowestGrade()
+        {
+            //arrange
+            var employee = new Employee("Xymena", "Zapiór");
+            employee.AddGrade(0);
+
+            //act
+            var result = employee.Result;
+
+
+            //assert
+            Assert.AreEqual(Employee.lowestGrade, result);
+        }
+
+        [Test]
+        public void CheckAddGradeAsLetterA_ShouldReturnLevelA()
+        {
+            //arrange
+            var employee = new Employee("Xymena", "Zapiór");
+            employee.AddGrade("A");
+            employee.AddGrade("a");
+
+            //act
+            var result = employee.Result;
+
+
+            //assert
+            Assert.AreEqual(160, result);
+        }
+
+        [Test]
+        public void CheckAddGradeAsLetterB_ShouldReturnLevelB()
+        {
+            //arrange
+            var employee = new Employee("Xymena", "Zapiór");
+            employee.AddGrade("B");
+            employee.AddGrade("b");
+
+            //act
+            var result = employee.Result;
+
+
+            //assert
+            Assert.AreEqual(120, result);
+        }
+        [Test]
+        public void CheckAddGradeAsLetterC_ShouldReturnLevelC()
+        {
+            //arrange
+            var employee = new Employee("Xymena", "Zapiór");
+            employee.AddGrade("C");
+            employee.AddGrade("c");
+
+            //act
+            var result = employee.Result;
+
+
+            //assert
+            Assert.AreEqual(80, result);
+        }
+        [Test]
+        public void CheckAddGradeAsLetterD_ShouldReturnLevelD()
+        {
+            //arrange
+            var employee = new Employee("Xymena", "Zapiór");
+            employee.AddGrade("D");
+            employee.AddGrade("d");
+
+            //act
+            var result = employee.Result;
+
+
+            //assert
+            Assert.AreEqual(40, result);
+        }
+
+        public void CheckAddGradeAsLetterE_ShouldReturnLevelE()
+        {
+            //arrange
+            var employee = new Employee("Xymena", "Zapiór");
+            employee.AddGrade("E");
+            employee.AddGrade("e");
+
+            //act
+            var result = employee.Result;
+
+
+            //assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
         public void CheckMaxGrade_ShouldReturnMax()
         {
             //arrange
