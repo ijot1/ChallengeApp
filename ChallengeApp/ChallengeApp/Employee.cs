@@ -51,7 +51,7 @@ namespace ChallengeApp
             }
             else
             {
-                Console.WriteLine($"grade value out of scope: {grade :F2}");
+                throw new Exception($"grade value out of scope: {grade:F2}");
             }
         }
 
@@ -86,9 +86,8 @@ namespace ChallengeApp
                     case var i when ((inV is 'e') || (inV is 'E')):
                         this.grades.Add(levelE);
                         break;
-                    default: 
-                        Console.WriteLine($"letter out of scope: {grade}");
-                        break;
+                    default:
+                        throw new Exception($"letter out of scope: {grade}");
                     }
             }
             else
@@ -99,7 +98,7 @@ namespace ChallengeApp
                 }
                 else
                 {
-                    Console.WriteLine($"entered data is not of float type: {grade}");
+                    throw new Exception($"entered data is not of float type: {grade}");
                 }
             }
         }

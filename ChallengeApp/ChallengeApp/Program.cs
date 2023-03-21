@@ -24,7 +24,15 @@ while (true)
     if (input != "q")
     {
         Console.WriteLine($"Podałeś ocenę: {input}");
-        employee.AddGrade(input);
+        try
+        {
+            employee.AddGrade(input);
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine($"Exception catched: {e.Message}");
+        }
+        
     }
     else
     {
