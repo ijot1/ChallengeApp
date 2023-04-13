@@ -1,6 +1,6 @@
 ﻿using ChallengeApp;
 
-var employee = new Employee("Ala", "Makota");
+var employee = new Employee("Ala", "Makota", 'F');
 
 Console.WriteLine("Witaj w programie do oceny pracowników");
 Console.WriteLine("======================================");
@@ -12,10 +12,10 @@ Console.WriteLine(  $"A ={Employee.levelA,3}; " +
                     $"C ={Employee.levelC,3}; " +
                     $"D ={Employee.levelD,3}; " +
                     $"E ={Employee.levelE,2}\n");
-Console.WriteLine($"{employee.Name} {employee.Surname}");
+Console.WriteLine($"{employee.GetName()}");
 Console.WriteLine();
 
-var input = "";
+string? input = "";
 while (true)
 {
     Console.WriteLine($"Podaj ocenę z zakresu: {Employee.lowestGrade} - {Employee.highestGrade}; q: zakończ");
@@ -39,7 +39,7 @@ while (true)
         Console.WriteLine();
         Console.WriteLine($"liczba ocen: {employee.GradesCount()}");
         Console.WriteLine();
-        Console.WriteLine($"Pracownik: {employee.Name} {employee.Surname}");
+        Console.WriteLine($"Pracownik: {employee.GetName()}");
         Console.WriteLine("--------------");
         break;
     }

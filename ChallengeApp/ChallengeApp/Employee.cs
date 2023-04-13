@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ChallengeApp
 {
-    public class Employee
+    public class Employee : Person
     {
         public static float lowestGrade = 0;
         public static float highestGrade = 100;
@@ -17,21 +17,21 @@ namespace ChallengeApp
         public static float levelC = 40;
         public static float levelD = 20;
         public static float levelE = 0;
-        
+
         private List<float> grades = new List<float>();
 
-        public Employee(string name, string surname) 
+        public Employee(string FirstName, string LastName, char sex) : base(FirstName, LastName, sex) { }
+        
+
+        public override string GetName()
         {
-            this.Name = name;
-            this.Surname = surname;
+            return $"{FirstName} {LastName}";
         }
 
-        public string Name { get; private set; }
+        public string? Department { get; private set; } = "Dep #";
 
-        public string Surname { get; private set; }
-
-        public float Result 
-        { 
+        public float Result
+        {
             get
             {
                 return grades.Sum();
@@ -45,7 +45,7 @@ namespace ChallengeApp
 
         public void AddGrade(float grade)
         {
-            if(grade >= lowestGrade && grade <= highestGrade)
+            if (grade >= lowestGrade && grade <= highestGrade)
             {
                 this.grades.Add(grade);
             }
@@ -55,10 +55,10 @@ namespace ChallengeApp
             }
         }
 
-        public void AddGrade(string grade)
+        public void AddGrade(string? grade)
         {
             var inValue = grade.ToCharArray();
-            if(inValue.Length == 1)
+            if (inValue.Length == 1 && inValue != null)
             {
                 var inV = inValue[0];
                 switch (inV)
@@ -88,11 +88,11 @@ namespace ChallengeApp
                         break;
                     default:
                         throw new Exception($"letter out of scope: {grade}");
-                    }
+                }
             }
             else
             {
-                if (float.TryParse(grade, out float result))
+                if (float.TryParse(grade, out float result) || inValue == null)
                 {
                     this.AddGrade(result);
                 }
@@ -101,8 +101,7 @@ namespace ChallengeApp
                     throw new Exception($"entered data is not of float type: {grade}");
                 }
             }
-        }
-            
+        }       
 
         public Statistics GetStatistics()
         {
