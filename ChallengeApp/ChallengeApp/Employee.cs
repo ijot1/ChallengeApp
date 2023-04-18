@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ChallengeApp
 {
-    public class Employee : Person
+    public class Employee : IEmployee
     {
         public static float lowestGrade = 0;
         public static float highestGrade = 100;
@@ -18,17 +18,24 @@ namespace ChallengeApp
         public static float levelD = 20;
         public static float levelE = 0;
 
-        private List<float> grades = new List<float>();
+        private List<float> grades = new ();
 
-        public Employee(string FirstName, string LastName, char sex) : base(FirstName, LastName, sex) { }
-        
-
-        public override string GetName()
+        public Employee(string firstName, string lastName, string position)
         {
-            return $"{FirstName} {LastName}";
+           this.FirstName = firstName;
+           this.LastName = lastName;
+           this.Position = position;
         }
 
-        public string? Department { get; private set; } = "Dep #";
+
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
+        public string Position { get; private set; }
+
+        public string GetName()
+        {
+            return $"{FirstName} {LastName}\n{Position}";
+        }
 
         public float Result
         {
@@ -55,7 +62,7 @@ namespace ChallengeApp
             }
         }
 
-        public void AddGrade(string? grade)
+        public void AddGrade(string grade)
         {
             var inValue = grade.ToCharArray();
             if (inValue.Length == 1 && inValue != null)
