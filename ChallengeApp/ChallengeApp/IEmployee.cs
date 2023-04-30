@@ -3,21 +3,21 @@
 
     public interface IEmployee
     {
-        string FirstName { get; }
+        string Name { get; }
 
-        string LastName { get; }
-
-        string Position { get; }
-
-        string GetName();
-
-        float Result { get; }
+        string Surname { get; }
 
         void AddGrade(float grade);
 
+        void AddGrade(double grade);
+
+        void AddGrade(int grade);
+
+        void AddGrade(char grade);
+
         void AddGrade(string grade);
 
-        public int GradesCount();
+        string GetName();
 
         Statistics GetStatistics();
     }
