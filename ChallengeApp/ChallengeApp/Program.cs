@@ -1,6 +1,12 @@
 ﻿using ChallengeApp;
 
 var employee = new EmployeeInFile("Ala", "Makota");
+employee.GradeAdded += EmployeeGradeAdded;
+
+void EmployeeGradeAdded(object sender, EventArgs args)
+{
+    Console.WriteLine("dodano nową ocenę");
+}
 
 Console.WriteLine("Witaj w programie do oceny pracowników");
 Console.WriteLine("======================================");

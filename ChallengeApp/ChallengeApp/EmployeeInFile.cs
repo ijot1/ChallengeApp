@@ -4,6 +4,8 @@
 
     public class EmployeeInFile : EmployeeBase
     {
+        public event GradeAddedDelegate GradeAdded;
+
         private const string fileName = "grades.txt";
 
         public List<float> grades = new();
@@ -50,6 +52,10 @@
                 using (var writer = File.AppendText(fileName))
                 {
                     writer.WriteLine(grade);
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
+                    }
                 }
             }
             else
@@ -81,7 +87,7 @@
                         grades.Add(float.Parse(line));
                         if (line.Trim() != "")
                         {
-                            line = reader.ReadLine();                                                        
+                            line = reader.ReadLine();
                         }
                     }                        
 

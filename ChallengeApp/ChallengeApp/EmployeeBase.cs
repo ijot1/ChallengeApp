@@ -1,7 +1,6 @@
 ﻿namespace ChallengeApp
 {
     public abstract class EmployeeBase  : IEmployee
-
     {
         public const float lowestGrade = 0;
         public const float highestGrade = 100;
@@ -10,6 +9,8 @@
         public const float levelC = 40;
         public const float levelD = 20;
         public const float levelE = 0;
+
+        public delegate void GradeAddedDelegate(object sender, EventArgs args);
 
         public EmployeeBase(string name, string surname)
         {
