@@ -48,7 +48,7 @@ while (true)
     else
     {
         Console.WriteLine();
-        Console.WriteLine($"liczba ocen: {employee.GradesCount()}");
+        Console.WriteLine($"liczba ocen: {employee.GetStatistics().Count}");
         Console.WriteLine("--------------");
         break;
     }

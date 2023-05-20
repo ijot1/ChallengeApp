@@ -2,7 +2,7 @@
 {
  internal class EmployeeInMemory : EmployeeBase
     {
-        public event GradeAddedDelegate GradeAdded;
+        public override event GradeAddedDelegate GradeAdded;
 
         private List<float> grades = new();
 
@@ -15,20 +15,6 @@
         public override string GetName()
         {
             return $"{Name} {Surname}";
-        }
-
-        public float Result
-        {
-            get
-            {
-                return grades.Sum();
-            }
-        }
-
-        public int GradesCount()
-        {
-            
-            return grades.Count;
         }
 
         public override void AddGrade(float grade)
@@ -50,39 +36,13 @@
 
         public override Statistics GetStatistics()
         {
-            var statistics = new Statistics(); ;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-
+            var statistics = new Statistics();
+            
             foreach (var grade in this.grades)
             {
-                if (grade >= 0)
-                {
-                    statistics.Max = Math.Max(statistics.Max, grade);
-                    statistics.Min = Math.Min(statistics.Min, grade);
-                }
+                statistics.AddGrade(grade);
             }
-
-            statistics.Average = this.Result / this.grades.Count;
-
-            switch (statistics.Average)
-            {
-                case var average when average >= levelA:
-                    statistics.AverageLetter = 'A';
-                    break;
-                case var average when average >= levelB:
-                    statistics.AverageLetter = 'B';
-                    break;
-                case var average when average >= levelC:
-                    statistics.AverageLetter = 'C';
-                    break;
-                case var average when average >= levelD:
-                    statistics.AverageLetter = 'D';
-                    break;
-                default:
-                    statistics.AverageLetter = 'E';
-                    break;
-            }
+            
             return statistics;
         }
     }
